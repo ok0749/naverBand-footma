@@ -1,0 +1,33 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+
+<body>
+
+    <label for="mode-select">Choose a mode:</label>
+
+    <select name="modes" id="mode-select">
+        <option value="total">전체</option>
+        <option value="player">용병구함</option>
+        <option value="match">매치구함</option>
+    </select>
+
+    <ul class="contents"></ul>
+
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/static/footma.js"></script>
+
+    <ul class="content"></ul>
+    <a href="http://localhost:3000/user/footma/paging">footma</a>
+
+
+</body>
+
+
+</html>
