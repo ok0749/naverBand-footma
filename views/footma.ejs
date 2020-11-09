@@ -11,6 +11,7 @@
 
     <label for="mode-select">Choose a mode:</label>
     <select name="modes" id="mode-select">
+        <option value="no">선택안함</option>
         <option value="total">전체</option>
         <option value="player">용병구함</option>
         <option value="match">매치구함</option>
@@ -22,6 +23,10 @@
         <option value="up">오름차순</option>
         <option value="down">내림차순</option>
     </select>
+    <form id=submitForm action="">
+        <input type="text" placeholder="Enter" id='searchContext'>
+        <input type="submit" value="submit" id='searchBtn'>
+    </form>
     <ul class="contents"></ul>
 
 

@@ -1,8 +1,12 @@
-.contents {
 
-}
 
 .content {
     white-space: pre;
     margin-bottom: 50px;
+}
+
+.highlight {
+    font-weight: bold;
+    color: red;
+    background-color: yellow;
 }

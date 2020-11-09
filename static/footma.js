@@ -2,6 +2,63 @@ const modeSelect = document.querySelector('#mode-select')
 const dateSelect = document.querySelector('#date-select')
 const ul = document.querySelector('ul')
 const body = document.querySelector('body')
+const searchContext = document.querySelector('#searchContext')
+const searchBtn = document.querySelector('#searchBtn')
+const submitForm = document.querySelector('#submitForm')
+
+
+// search
+const handleSearch = (event) => {
+    let reg = []
+    event.preventDefault();
+    let searchData = [];
+    if (searchContext.value !== '') {
+        axios.get('/total').then((total) => {
+            total.data.forEach(element => {
+                reg = new RegExp(`${searchContext.value}`, 'g')
+                const result = reg.exec(element.content)
+                // console.log(element.content.replace(reg, 'LOVE'))
+                // const result = element.content.replace(reg, 'LOVE')
+                if (result !== null) {
+                    searchData.push(result['input'])
+                    // searchData.push(result)
+                }
+            });
+            if (searchData.length === 0) {
+                alert('검색결과 없음 ')
+                // console.log('검색결과 없음')
+            } else {
+                removeLiElement();
+                searchData.forEach(element => {
+                    const li = document.createElement('li')
+                    li.innerHTML = element.replace(reg, "<span class='highlight'>" + searchContext.value + "</span>")
+                    li.className = "content"
+                    ul.appendChild(li)
+                    // console.log(element)
+                });
+            }
+            // console.log(searchData)
+        }).catch((error) => {
+            console.log(error)
+        })
+
+        // const li = document.querySelectorAll('li')
+        // li.forEach(element => {
+        //     let reg = new RegExp(`${searchContext.value}`, 'g')
+        //     const result = reg.exec(element.innerHTML)
+        //     if (result !== null) {
+        //         const li = document.createElement('li')
+        //         li.innerHTML = result['input']
+        //         li.className = "content"
+        //         ul.appendChild(li)
+        //     }
+        // });
+    } else {
+        alert('검색어를 입력하세요')
+    }
+
+}
+
 
 // 화면에 나와있는 목록 제거
 const removeLiElement = () => {
@@ -135,6 +192,7 @@ const init = () => {
     dateSelect.disabled = "disabled"
     handleTotal();
     modeSelect.addEventListener('change', handleChange)
+    submitForm.addEventListener('submit', handleSearch)
 }
 
 init()
